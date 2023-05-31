@@ -35,9 +35,5 @@ public class AuthController {
 		return ResponseEntity.ok(authService.login(loginDetails));
 	}
 	
-	@GetMapping("/hello")
-	public ResponseEntity<String> hello() {
-		return ResponseEntity.ok("Hello");
-	}
 
 }
