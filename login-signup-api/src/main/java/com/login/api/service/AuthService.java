@@ -3,7 +3,6 @@ package com.login.api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,6 @@ import com.login.api.auth.AuthResponse;
 import com.login.api.auth.LoginDetails;
 import com.login.api.auth.SignUpDetails;
 import com.login.api.config.JwtService;
-import com.login.api.entity.Role;
 import com.login.api.entity.User;
 import com.login.api.repo.UserRepo;
 
@@ -33,7 +31,6 @@ public class AuthService {
 	public AuthResponse signUp(SignUpDetails signUpDetails) {
 		signUpDetails.setPassword(passwordEncoder.encode(signUpDetails.getPassword()));
 		User user = new User(signUpDetails);
-		user.setRole(Role.USER);
 		repo.save(user);
 
 		String token = jwtService.generateToken(null, user);
